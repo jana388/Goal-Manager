@@ -22,6 +22,7 @@ I named the *GoalRight* and *GoalLeft*, but it is totally up to you how you will
 Make sure the **Box Colliders** are long, so they cover the whole edge of the platform.
 Now that we have set the colliders, it is time to add our first script
 
+
 # Empty Object
 
 We will make a **C# script** in the Project and name it *GameController*
@@ -60,7 +61,7 @@ I made two for each score. Both intergers will be private. They will both start 
 > Interger is a number used in Unity that can only be changed in the script
 > We will keep it private so it is a fixed number, and no other code can alter its state
 
-Now we need to provide a communication between the Goal and the Game Controller
+Now we need to provide a communication between the Game Controller and Goal Controller *(which I will mention later on)*
 
 ![Capture6](https://github.com/user-attachments/assets/8ca7265e-c3b5-42bb-8ce5-d15ad9e2b78d)
 
@@ -92,7 +93,36 @@ Only thing left to do is to go back to these scripts and add the Invoke for the 
 > Invoke is a function used to invoke an action with a given delay
 > That is why we have to choose a time when we want the ball to be spawned back to the game
 
-# Goal Event
+# Goal Controller and Events
+
+We will make another script in the Project and name it Goal Controller
+
+> Why are we making another script that is also focusing on the goal and not using Game Controller?
+> We are making another script because we want to divide these scripts because Game controller operates on the connections between the UI and the goals, while the Goal controller will be in charge of the events
+> Events in Unity help us organise the operations Unity makes and connect different scripts:
+> - For instance, in our case, we want the link  the ball with the goal
+> - When the ball touches the Box Collider (Goal), we want it to disappear from the game and make it restart the game
+> - It is easier to update certain elements in a game
+
+Since we are going to use Events in Unity, we need to classify it
+![Capture11](https://github.com/user-attachments/assets/d5076c1c-db44-439c-a5b0-92cacdcc347a)
+Other that UnityEvents, we will use Unity...
+
+Now we will add a public variable that will add a Trigger to the goal
+
+![Capture12](https://github.com/user-attachments/assets/10357c92-726a-465a-a75e-29b3531627a0)
+
+We can delete Start and Update void in this script as well, since again, we do not need this code to be updated in every frame, but only when it is triggered by the ball
+
+Instead, we will make a private void that will do this
+
+![Capture13](https://github.com/user-attachments/assets/33eb7d1f-8522-4983-94fd-ad3355d1cede)
+
+This event will link our script to the Ball using the script
+This means that when the ball touches the Box Collider, it will be destroyed
+
+
+
 
 
 
