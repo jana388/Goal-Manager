@@ -1,23 +1,44 @@
 # Goal-Manager
 
 In this tutorial I will teach you how to make a goal for your game which detects a ball and increases the score. This is suitable for 3D games.
+
 ## Prerequisites 
 
-For this tutorial you will need to have Unity 2022.3.46f installed as well as the Microsoft Editor 2022.
-It is a bit more advanced tutorial so I suggest not following it if not previously using Unity.
-You should know how to navigate through Unity, and know how to make a movement script for the ball and the player. It would also be ideal if you knew how to make a UI for the left and right score.
+For this tutorial you will need to have **Unity** *(2022.3.46f preferably)* installed as well as the **Microsoft Visual Studio 2022**
 
-Having done this, you should be ready for setting up the goals
+This tutorial is a bit more advanced and it is required to be familiar with the basics of Unity and how it works.
+I am setting this as a prerequisite since I have already prepared a 3D scene.
+In my scene I have set up :
+- A platform
+- Two players
+- Two walls
+- Two goals on both sides of the platform
+
+
+
+You should have a script for :
+- `Player Movement`
+- `Ai Movement`
+- `Ball Controller`
+
+  ![Screenshot (386)](https://github.com/user-attachments/assets/cf026ac7-6cea-4955-ae94-fc5c8cb3655c)
+  > This is what the scene should look like
+
+
+
+To actually track a score and have something to connect the Goal Manager with, we need a UI for the **left and right score**
+
+I would also like to set the camera behind one of the players
+
+This is what the scene should look like in the **Game Mode**
 
 ![Capture](https://github.com/user-attachments/assets/f272a9cb-fce0-42a7-accb-7085f6a3aec0)
 
-This is what my scene looks like right now.
-I have set the players as cubes on both edges of the platform and placed the ball in the middle. I also placed two other cubes to block the ball from leaving the platform. However, the goals would be empty where the ball can leave the platforms.
+I have set two box colliders on the opposite edges of the platform so they will later be able to indicate a score.
+I named the *GoalRight* and *GoalLeft*, but it is totally up to you how you will name the goals
 
 ![Capture2](https://github.com/user-attachments/assets/1cfb62e8-1e33-4d42-ad2c-89d9878b12c4)
 
-I have set two box colliders on the opposite edges of the platform so they will later be able to indicate a score.
-I named the *GoalRight* and *GoalLeft*, but it is totally up to you how you will name the goals
 
 Make sure the **Box Colliders** are long, so they cover the whole edge of the platform.
 Now that we have set the colliders, it is time to add our first script
@@ -25,31 +46,41 @@ Now that we have set the colliders, it is time to add our first script
 
 # Empty Object
 
-We will make a **C# script** in the Project and name it *GameController*
-Then 
-We will add an empty object in the Hierarchy and name it Game Controller
+We will make a **C# script** in the Project and name it `GameController`
+
+Then we will add an empty object in the Hierarchy and name it also *Game Controller*
 
 This game object will exist in the scene, but will not interact with any object in the game.
 
-we need a component that will be able to track the score
+We need a component that will be able to track the score
+> Why do we need game controllers in a game?
+>
+> If the game is more complex and we want the game to manage a state, for example, restarting the game
+>
+> It will also help us handle game events which we will make in the future
+>
+> Since we want our game to keep track of the score and update the UI when scoring a goal, a game manager is perfect for this case
 
-We can even add a colour to it in the Inspector like this 
+We can even add a colour to the *Game Manager* in the Inspector like this 
 
 ![Screenshot (385)](https://github.com/user-attachments/assets/44182145-f4d8-41b8-ab99-9c88be0d8f5e)
 
-Then we put our script on the Empty object by clicking and dragging
+Then we put our script on the Empty object by clicking and dragging the script to the Game Controller object in the Inspector
 
-and we are ready to code.
+Open the C# script and we are ready to go
 
 # Coding the Game Controller
 
-Open the Game Controller in Mictrosoft Editor
-Since I am using the Text Mesh pro for my Ui, I am using the ... for it because without it the code could not be classified.
-Other than that, we are only using Unitys ...
+Open the Game Controller in Microsoft Visual Studio
+
+Since I am using the *Text Mesh Pro* for my UI, I will have to add `using TMPro` as one of my directives because without it the code for UI could not be classified
+
+Other than that, we are only keeping the `using UnityEngine` directive
 ![Capture3](https://github.com/user-attachments/assets/2c920588-8fec-4b52-886a-e33936a80b89)
 
-For this script I will not be using Start and Update void, because we will only need separate voids that will only be updated when the goal is triggered.
-But before that, I will add two variables for the Ui
+For this script I will not be using `Start` and `Update void`, we will need separate voids that will only be updated when the goal is **triggered**.
+
+Above the `Start void`, I will add two variables for the UI
 
 ![Capture4](https://github.com/user-attachments/assets/aae7c94a-de41-44c9-a7cf-3c90e339b70b)
 
@@ -58,7 +89,9 @@ Later on I will add two variables for the scores
 ![Capture5](https://github.com/user-attachments/assets/372f0819-b36d-4cee-bbf5-62668f014283)
 
 I made two for each score. Both intergers will be private. They will both start at 0. 
+
 > Interger is a number used in Unity that can only be changed in the script
+> 
 > We will keep it private so it is a fixed number, and no other code can alter its state
 
 Now we need to provide a communication between the Game Controller and Goal Controller *(which I will mention later on)*
@@ -105,7 +138,9 @@ We will make another script in the Project and name it Goal Controller
 > - It is easier to update certain elements in a game
 
 Since we are going to use Events in Unity, we need to classify it
+
 ![Capture11](https://github.com/user-attachments/assets/d5076c1c-db44-439c-a5b0-92cacdcc347a)
+
 Other that UnityEvents, we will use Unity...
 
 Now we will add a public variable that will add a Trigger to the goal
@@ -120,19 +155,4 @@ Instead, we will make a private void that will do this
 
 This event will link our script to the Ball using the script
 This means that when the ball touches the Box Collider, it will be destroyed
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
