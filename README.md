@@ -11,6 +11,7 @@ I am setting this as a prerequisite since I have already prepared a 3D scene.
 In my scene I have set up :
 - A platform
 - Two players
+- A ball (something to trigger the goals)
 - Two walls
 - Two goals on both sides of the platform
 
