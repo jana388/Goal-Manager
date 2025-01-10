@@ -76,6 +76,7 @@ Open the Game Controller in Microsoft Visual Studio
 Since I am using the *Text Mesh Pro* for my UI, I will have to add `using TMPro` as one of my directives because without it the code for UI could not be classified
 
 Other than that, we are only keeping the `using UnityEngine` directive
+
 ![Capture3](https://github.com/user-attachments/assets/2c920588-8fec-4b52-886a-e33936a80b89)
 
 For this script I will not be using `Start` and `Update void`, we will need separate voids that will only be updated when the goal is **triggered**.
